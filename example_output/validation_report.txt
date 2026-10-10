@@ -1,0 +1,24 @@
+SD Agent RAG - Stage 1 + Stage 2 Validation Report
+==========================================================
+Status: FAIL
+SD files processed: 10
+AST parsed: 0
+Fallback parsed: 10
+Function APIs: 15
+Signals: 15
+Feature files: 5
+Errors: 10
+Warnings: 0
+
+Issues
+------
+[ERROR] 01_driver_door_status.py:35 - SYNTAX_ERROR: Python syntax error: expected 'except' or 'finally' block
+[ERROR] 02_passenger_door_check.py:27 - SYNTAX_ERROR: Python syntax error: expected 'except' or 'finally' block
+[ERROR] 03_vehicle_speed_set.py:24 - SYNTAX_ERROR: Python syntax error: expected 'except' or 'finally' block
+[ERROR] 04_engine_speed_ramp.py:26 - SYNTAX_ERROR: Python syntax error: expected 'except' or 'finally' block
+[ERROR] 05_ignition_sequence.py:24 - SYNTAX_ERROR: Python syntax error: expected 'except' or 'finally' block
+[ERROR] 06_gear_position.py:29 - SYNTAX_ERROR: Python syntax error: expected 'except' or 'finally' block
+[ERROR] 07_brake_pressure_validation.py:25 - SYNTAX_ERROR: Python syntax error: expected 'except' or 'finally' block
+[ERROR] 08_hazard_toggle.py:23 - SYNTAX_ERROR: Python syntax error: expected 'except' or 'finally' block
+[ERROR] 09_window_and_seatbelt.py:24 - SYNTAX_ERROR: Python syntax error: expected 'except' or 'finally' block
+[ERROR] 10_ecu_reset_event.py:22 - SYNTAX_ERROR: Python syntax error: expected 'except' or 'finally' block

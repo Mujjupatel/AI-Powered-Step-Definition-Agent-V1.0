@@ -1,0 +1,11 @@
+{
+  "schema_version": "stage3-v1",
+  "source_chunks": "example_output/rag_chunks.jsonl",
+  "count": 74,
+  "embedding_provider": "tfidf",
+  "embedding_dimension": 905,
+  "duplicate_source_chunk_ids": 1,
+  "notes": [
+    "index_id is intentionally independent from Stage 2 chunk_id because duplicate chunk IDs may exist across step-type variants."
+  ]
+}

@@ -1,0 +1,545 @@
+{
+  "functions": {
+    "text_api": {
+      "api_key": "text_api",
+      "api_name": "Text",
+      "block_type": "Frame",
+      "purpose": "Adds a text/comment frame to the generated AutomationDesk sequence.",
+      "inputs": [
+        "text",
+        "text_level"
+      ],
+      "outputs": [],
+      "parameters": {
+        "String.text": {
+          "direction": "in",
+          "type": "String"
+        },
+        "Integer.text_level": {
+          "direction": "in",
+          "type": "Integer"
+        }
+      },
+      "default_values": {
+        "text_level": "7"
+      }
+    },
+    "set_signal": {
+      "api_key": "set_signal",
+      "api_name": "Set Signal",
+      "block_type": "Non Frame",
+      "purpose": "Sets a signal to a specified value and optionally waits after the operation.",
+      "inputs": [
+        "Variable",
+        "value",
+        "PostDelay"
+      ],
+      "outputs": [],
+      "parameters": {
+        "String.Variable": {
+          "direction": "in",
+          "type": "String",
+          "source": "Signal Catalogue"
+        },
+        "Variant.value": {
+          "direction": "in",
+          "type": "Variant"
+        },
+        "Float.PostDelay": {
+          "direction": "in",
+          "type": "Float"
+        }
+      },
+      "default_values": {
+        "PostDelay": "0.5"
+      }
+    },
+    "get_signal": {
+      "api_key": "get_signal",
+      "api_name": "Get Signal",
+      "block_type": "Non Frame",
+      "purpose": "Reads a signal value and exposes the result for subsequent validation.",
+      "inputs": [
+        "Variable",
+        "PostDelay"
+      ],
+      "outputs": [
+        "value"
+      ],
+      "parameters": {
+        "String.Variable": {
+          "direction": "in",
+          "type": "String",
+          "source": "Signal Catalogue"
+        },
+        "Float.PostDelay": {
+          "direction": "in",
+          "type": "Float"
+        },
+        "Variant.value": {
+          "direction": "out",
+          "type": "Variant"
+        }
+      },
+      "default_values": {
+        "PostDelay": "0.2"
+      }
+    },
+    "wait": {
+      "api_key": "wait",
+      "api_name": "Wait",
+      "block_type": "Non Frame",
+      "purpose": "Waits for a specified duration before continuing.",
+      "inputs": [
+        "Duration"
+      ],
+      "outputs": [],
+      "parameters": {
+        "Float.Duration": {
+          "direction": "in",
+          "type": "Float"
+        }
+      },
+      "default_values": {
+        "Duration": "1.0"
+      }
+    },
+    "reset_ecu": {
+      "api_key": "reset_ecu",
+      "api_name": "Reset ECU",
+      "block_type": "Non Frame",
+      "purpose": "Resets the selected ECU and optionally waits for stabilization.",
+      "inputs": [
+        "EcuName",
+        "PostDelay"
+      ],
+      "outputs": [
+        "ResetStatus"
+      ],
+      "parameters": {
+        "String.EcuName": {
+          "direction": "in",
+          "type": "String"
+        },
+        "Float.PostDelay": {
+          "direction": "in",
+          "type": "Float"
+        },
+        "Boolean.ResetStatus": {
+          "direction": "out",
+          "type": "Boolean"
+        }
+      },
+      "default_values": {
+        "PostDelay": "2.0"
+      }
+    },
+    "set_multiple_signals": {
+      "api_key": "set_multiple_signals",
+      "api_name": "Set Multiple Signals",
+      "block_type": "Non Frame",
+      "purpose": "Sets multiple related signals in one library call.",
+      "inputs": [
+        "SignalGroup",
+        "PostDelay"
+      ],
+      "outputs": [],
+      "parameters": {
+        "String.SignalGroup": {
+          "direction": "in",
+          "type": "String",
+          "source": "Signal Catalogue"
+        },
+        "Float.PostDelay": {
+          "direction": "in",
+          "type": "Float"
+        }
+      },
+      "default_values": {
+        "PostDelay": "0.3"
+      }
+    },
+    "ramp_signal": {
+      "api_key": "ramp_signal",
+      "api_name": "Ramp Signal",
+      "block_type": "Non Frame",
+      "purpose": "Ramps a signal from a start value to an end value over a configured duration.",
+      "inputs": [
+        "Variable",
+        "StartValue",
+        "EndValue",
+        "Duration",
+        "PostDelay"
+      ],
+      "outputs": [],
+      "parameters": {
+        "String.Variable": {
+          "direction": "in",
+          "type": "String",
+          "source": "Signal Catalogue"
+        },
+        "Float.StartValue": {
+          "direction": "in",
+          "type": "Float"
+        },
+        "Float.EndValue": {
+          "direction": "in",
+          "type": "Float"
+        },
+        "Float.Duration": {
+          "direction": "in",
+          "type": "Float"
+        },
+        "Float.PostDelay": {
+          "direction": "in",
+          "type": "Float"
+        }
+      },
+      "default_values": {
+        "Duration": "5.0",
+        "PostDelay": "0.5"
+      }
+    },
+    "toggle_signal": {
+      "api_key": "toggle_signal",
+      "api_name": "Toggle Signal",
+      "block_type": "Non Frame",
+      "purpose": "Toggles a Boolean signal and waits for the configured post delay.",
+      "inputs": [
+        "Variable",
+        "PostDelay"
+      ],
+      "outputs": [],
+      "parameters": {
+        "String.Variable": {
+          "direction": "in",
+          "type": "String",
+          "source": "Signal Catalogue"
+        },
+        "Float.PostDelay": {
+          "direction": "in",
+          "type": "Float"
+        }
+      },
+      "default_values": {
+        "PostDelay": "0.2"
+      }
+    },
+    "check_signal": {
+      "api_key": "check_signal",
+      "api_name": "Check Signal",
+      "block_type": "Non Frame",
+      "purpose": "Checks a signal against an expected value within a tolerance.",
+      "inputs": [
+        "Variable",
+        "ExpectedValue",
+        "Tolerance",
+        "Timeout"
+      ],
+      "outputs": [
+        "Pass"
+      ],
+      "parameters": {
+        "String.Variable": {
+          "direction": "in",
+          "type": "String",
+          "source": "Signal Catalogue"
+        },
+        "Variant.ExpectedValue": {
+          "direction": "in",
+          "type": "Variant"
+        },
+        "Float.Tolerance": {
+          "direction": "in",
+          "type": "Float"
+        },
+        "Float.Timeout": {
+          "direction": "in",
+          "type": "Float"
+        },
+        "Boolean.Pass": {
+          "direction": "out",
+          "type": "Boolean"
+        }
+      },
+      "default_values": {
+        "Tolerance": "0.0",
+        "Timeout": "2.0"
+      }
+    },
+    "set_enum_signal": {
+      "api_key": "set_enum_signal",
+      "api_name": "Set Enum Signal",
+      "block_type": "Non Frame",
+      "purpose": "Sets an enumeration signal using a named enum value.",
+      "inputs": [
+        "Variable",
+        "EnumValue",
+        "PostDelay"
+      ],
+      "outputs": [],
+      "parameters": {
+        "String.Variable": {
+          "direction": "in",
+          "type": "String",
+          "source": "Signal Catalogue"
+        },
+        "String.EnumValue": {
+          "direction": "in",
+          "type": "String"
+        },
+        "Float.PostDelay": {
+          "direction": "in",
+          "type": "Float"
+        }
+      },
+      "default_values": {
+        "PostDelay": "0.4"
+      }
+    },
+    "trigger_event": {
+      "api_key": "trigger_event",
+      "api_name": "Trigger Event",
+      "block_type": "Non Frame",
+      "purpose": "Triggers a named AutomationDesk event and waits for completion.",
+      "inputs": [
+        "EventName",
+        "Timeout"
+      ],
+      "outputs": [
+        "Triggered"
+      ],
+      "parameters": {
+        "String.EventName": {
+          "direction": "in",
+          "type": "String"
+        },
+        "Float.Timeout": {
+          "direction": "in",
+          "type": "Float"
+        },
+        "Boolean.Triggered": {
+          "direction": "out",
+          "type": "Boolean"
+        }
+      },
+      "default_values": {
+        "Timeout": "3.0"
+      }
+    },
+    "start_timer": {
+      "api_key": "start_timer",
+      "api_name": "Start Timer",
+      "block_type": "Non Frame",
+      "purpose": "Starts a named timer used by later timing or validation operations.",
+      "inputs": [
+        "TimerName"
+      ],
+      "outputs": [],
+      "parameters": {
+        "String.TimerName": {
+          "direction": "in",
+          "type": "String"
+        }
+      },
+      "default_values": {}
+    },
+    "stop_timer": {
+      "api_key": "stop_timer",
+      "api_name": "Stop Timer",
+      "block_type": "Non Frame",
+      "purpose": "Stops a named timer and returns the measured duration.",
+      "inputs": [
+        "TimerName"
+      ],
+      "outputs": [
+        "ElapsedTime"
+      ],
+      "parameters": {
+        "String.TimerName": {
+          "direction": "in",
+          "type": "String"
+        },
+        "Float.ElapsedTime": {
+          "direction": "out",
+          "type": "Float"
+        }
+      },
+      "default_values": {}
+    },
+    "log_result": {
+      "api_key": "log_result",
+      "api_name": "Log Result",
+      "block_type": "Frame",
+      "purpose": "Writes a test result message with a severity level.",
+      "inputs": [
+        "Message",
+        "Severity"
+      ],
+      "outputs": [],
+      "parameters": {
+        "String.Message": {
+          "direction": "in",
+          "type": "String"
+        },
+        "Integer.Severity": {
+          "direction": "in",
+          "type": "Integer"
+        }
+      },
+      "default_values": {
+        "Severity": "1"
+      }
+    },
+    "compare_signal": {
+      "api_key": "compare_signal",
+      "api_name": "Compare Signal",
+      "block_type": "Non Frame",
+      "purpose": "Compares two signal values or a signal against a reference and returns a Boolean result.",
+      "inputs": [
+        "LeftVariable",
+        "RightVariable",
+        "Tolerance",
+        "Timeout"
+      ],
+      "outputs": [
+        "Match"
+      ],
+      "parameters": {
+        "String.LeftVariable": {
+          "direction": "in",
+          "type": "String",
+          "source": "Signal Catalogue"
+        },
+        "String.RightVariable": {
+          "direction": "in",
+          "type": "String",
+          "source": "Signal Catalogue"
+        },
+        "Float.Tolerance": {
+          "direction": "in",
+          "type": "Float"
+        },
+        "Float.Timeout": {
+          "direction": "in",
+          "type": "Float"
+        },
+        "Boolean.Match": {
+          "direction": "out",
+          "type": "Boolean"
+        }
+      },
+      "default_values": {
+        "Tolerance": "0.0",
+        "Timeout": "2.0"
+      }
+    }
+  },
+  "signals": {
+    "door_status": {
+      "Signal Key": "door_status",
+      "TAMS ID": "TAMS-SIG-001",
+      "Model Path": "Body/Doors/DriverDoor/Status",
+      "Type": "Boolean",
+      "Description": "Driver door status"
+    },
+    "passenger_door_status": {
+      "Signal Key": "passenger_door_status",
+      "TAMS ID": "TAMS-SIG-002",
+      "Model Path": "Body/Doors/PassengerDoor/Status",
+      "Type": "Boolean",
+      "Description": "Passenger door status"
+    },
+    "rear_left_door_status": {
+      "Signal Key": "rear_left_door_status",
+      "TAMS ID": "TAMS-SIG-003",
+      "Model Path": "Body/Doors/RearLeft/Status",
+      "Type": "Boolean",
+      "Description": "Rear left door status"
+    },
+    "vehicle_speed": {
+      "Signal Key": "vehicle_speed",
+      "TAMS ID": "TAMS-SIG-004",
+      "Model Path": "Vehicle/Dynamics/Speed",
+      "Type": "Float",
+      "Description": "Vehicle speed"
+    },
+    "engine_speed": {
+      "Signal Key": "engine_speed",
+      "TAMS ID": "TAMS-SIG-005",
+      "Model Path": "Powertrain/Engine/Speed",
+      "Type": "Float",
+      "Description": "Engine speed"
+    },
+    "brake_pressure": {
+      "Signal Key": "brake_pressure",
+      "TAMS ID": "TAMS-SIG-006",
+      "Model Path": "BrakeSystem/Pressure/BrakePressure",
+      "Type": "Float",
+      "Description": "Brake pressure"
+    },
+    "gear_position": {
+      "Signal Key": "gear_position",
+      "TAMS ID": "TAMS-SIG-007",
+      "Model Path": "Powertrain/Transmission/GearPosition",
+      "Type": "Enum",
+      "Description": "Current gear position"
+    },
+    "ignition_state": {
+      "Signal Key": "ignition_state",
+      "TAMS ID": "TAMS-SIG-008",
+      "Model Path": "Vehicle/Power/IgnitionState",
+      "Type": "Enum",
+      "Description": "Ignition state"
+    },
+    "hazard_lamp_state": {
+      "Signal Key": "hazard_lamp_state",
+      "TAMS ID": "TAMS-SIG-009",
+      "Model Path": "Body/Lighting/HazardLamp",
+      "Type": "Boolean",
+      "Description": "Hazard lamp state"
+    },
+    "wiper_mode": {
+      "Signal Key": "wiper_mode",
+      "TAMS ID": "TAMS-SIG-010",
+      "Model Path": "Body/Wiper/Mode",
+      "Type": "Enum",
+      "Description": "Wiper operating mode"
+    },
+    "seat_belt_driver": {
+      "Signal Key": "seat_belt_driver",
+      "TAMS ID": "TAMS-SIG-011",
+      "Model Path": "Body/Safety/DriverSeatBelt",
+      "Type": "Boolean",
+      "Description": "Driver seat belt state"
+    },
+    "parking_brake": {
+      "Signal Key": "parking_brake",
+      "TAMS ID": "TAMS-SIG-012",
+      "Model Path": "BrakeSystem/ParkingBrake/State",
+      "Type": "Boolean",
+      "Description": "Parking brake state"
+    },
+    "steering_angle": {
+      "Signal Key": "steering_angle",
+      "TAMS ID": "TAMS-SIG-013",
+      "Model Path": "Vehicle/Dynamics/SteeringAngle",
+      "Type": "Float",
+      "Description": "Steering angle"
+    },
+    "battery_voltage": {
+      "Signal Key": "battery_voltage",
+      "TAMS ID": "TAMS-SIG-014",
+      "Model Path": "Vehicle/Power/BatteryVoltage",
+      "Type": "Float",
+      "Description": "Battery voltage"
+    },
+    "window_driver_position": {
+      "Signal Key": "window_driver_position",
+      "TAMS ID": "TAMS-SIG-015",
+      "Model Path": "Body/Windows/Driver/Position",
+      "Type": "Float",
+      "Description": "Driver window position"
+    }
+  }
+}

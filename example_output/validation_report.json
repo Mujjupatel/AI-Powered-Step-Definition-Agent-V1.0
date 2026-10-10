@@ -1,0 +1,206 @@
+{
+  "summary": {
+    "sd_files_found": 10,
+    "sd_files_processed": 10,
+    "sd_files_using_ast": 0,
+    "sd_files_using_fallback_parser": 10,
+    "syntax_error_count": 10,
+    "error_count": 10,
+    "warning_count": 0,
+    "function_catalogue_count": 15,
+    "signal_catalogue_count": 15,
+    "feature_file_count": 5
+  },
+  "catalogue_summary": {
+    "function_api_count": 15,
+    "signal_count": 15,
+    "api_keys": [
+      "check_signal",
+      "compare_signal",
+      "get_signal",
+      "log_result",
+      "ramp_signal",
+      "reset_ecu",
+      "set_enum_signal",
+      "set_multiple_signals",
+      "set_signal",
+      "start_timer",
+      "stop_timer",
+      "text_api",
+      "toggle_signal",
+      "trigger_event",
+      "wait"
+    ],
+    "signal_keys": [
+      "battery_voltage",
+      "brake_pressure",
+      "door_status",
+      "engine_speed",
+      "gear_position",
+      "hazard_lamp_state",
+      "ignition_state",
+      "parking_brake",
+      "passenger_door_status",
+      "rear_left_door_status",
+      "seat_belt_driver",
+      "steering_angle",
+      "vehicle_speed",
+      "window_driver_position",
+      "wiper_mode"
+    ]
+  },
+  "errors": [
+    {
+      "severity": "ERROR",
+      "code": "SYNTAX_ERROR",
+      "message": "Python syntax error: expected 'except' or 'finally' block",
+      "file": "01_driver_door_status.py",
+      "line": 35,
+      "details": {
+        "syntax_error": {
+          "line": 35,
+          "column": 5,
+          "message": "expected 'except' or 'finally' block",
+          "text": "block_to_add += context.test_exec_gen.get_library_call("
+        }
+      }
+    },
+    {
+      "severity": "ERROR",
+      "code": "SYNTAX_ERROR",
+      "message": "Python syntax error: expected 'except' or 'finally' block",
+      "file": "02_passenger_door_check.py",
+      "line": 27,
+      "details": {
+        "syntax_error": {
+          "line": 27,
+          "column": 5,
+          "message": "expected 'except' or 'finally' block",
+          "text": "block_to_add += context.test_exec_gen.get_library_call("
+        }
+      }
+    },
+    {
+      "severity": "ERROR",
+      "code": "SYNTAX_ERROR",
+      "message": "Python syntax error: expected 'except' or 'finally' block",
+      "file": "03_vehicle_speed_set.py",
+      "line": 24,
+      "details": {
+        "syntax_error": {
+          "line": 24,
+          "column": 5,
+          "message": "expected 'except' or 'finally' block",
+          "text": "block_to_add += context.test_exec_gen.get_library_call("
+        }
+      }
+    },
+    {
+      "severity": "ERROR",
+      "code": "SYNTAX_ERROR",
+      "message": "Python syntax error: expected 'except' or 'finally' block",
+      "file": "04_engine_speed_ramp.py",
+      "line": 26,
+      "details": {
+        "syntax_error": {
+          "line": 26,
+          "column": 5,
+          "message": "expected 'except' or 'finally' block",
+          "text": "block_to_add += context.test_exec_gen.get_library_call("
+        }
+      }
+    },
+    {
+      "severity": "ERROR",
+      "code": "SYNTAX_ERROR",
+      "message": "Python syntax error: expected 'except' or 'finally' block",
+      "file": "05_ignition_sequence.py",
+      "line": 24,
+      "details": {
+        "syntax_error": {
+          "line": 24,
+          "column": 5,
+          "message": "expected 'except' or 'finally' block",
+          "text": "block_to_add += context.test_exec_gen.get_library_call("
+        }
+      }
+    },
+    {
+      "severity": "ERROR",
+      "code": "SYNTAX_ERROR",
+      "message": "Python syntax error: expected 'except' or 'finally' block",
+      "file": "06_gear_position.py",
+      "line": 29,
+      "details": {
+        "syntax_error": {
+          "line": 29,
+          "column": 5,
+          "message": "expected 'except' or 'finally' block",
+          "text": "block_to_add += context.test_exec_gen.get_library_call("
+        }
+      }
+    },
+    {
+      "severity": "ERROR",
+      "code": "SYNTAX_ERROR",
+      "message": "Python syntax error: expected 'except' or 'finally' block",
+      "file": "07_brake_pressure_validation.py",
+      "line": 25,
+      "details": {
+        "syntax_error": {
+          "line": 25,
+          "column": 5,
+          "message": "expected 'except' or 'finally' block",
+          "text": "block_to_add += context.test_exec_gen.get_library_call("
+        }
+      }
+    },
+    {
+      "severity": "ERROR",
+      "code": "SYNTAX_ERROR",
+      "message": "Python syntax error: expected 'except' or 'finally' block",
+      "file": "08_hazard_toggle.py",
+      "line": 23,
+      "details": {
+        "syntax_error": {
+          "line": 23,
+          "column": 5,
+          "message": "expected 'except' or 'finally' block",
+          "text": "block_to_add += context.test_exec_gen.get_library_call("
+        }
+      }
+    },
+    {
+      "severity": "ERROR",
+      "code": "SYNTAX_ERROR",
+      "message": "Python syntax error: expected 'except' or 'finally' block",
+      "file": "09_window_and_seatbelt.py",
+      "line": 24,
+      "details": {
+        "syntax_error": {
+          "line": 24,
+          "column": 5,
+          "message": "expected 'except' or 'finally' block",
+          "text": "block_to_add += context.test_exec_gen.get_library_call("
+        }
+      }
+    },
+    {
+      "severity": "ERROR",
+      "code": "SYNTAX_ERROR",
+      "message": "Python syntax error: expected 'except' or 'finally' block",
+      "file": "10_ecu_reset_event.py",
+      "line": 22,
+      "details": {
+        "syntax_error": {
+          "line": 22,
+          "column": 5,
+          "message": "expected 'except' or 'finally' block",
+          "text": "block_to_add += context.test_exec_gen.get_library_call("
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "status": "FAIL"
+}

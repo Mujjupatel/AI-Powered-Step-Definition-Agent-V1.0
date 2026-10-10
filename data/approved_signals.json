@@ -1,0 +1,50 @@
+{
+  "window_status": {
+    "signal_key": "window_status",
+    "tams_id": "TAMS-658",
+    "model_path": "bo/can/window_status",
+    "type": "String",
+    "description": "",
+    "source": "engineer_confirmed_local_overlay"
+  },
+  "doorStatus_Meas": {
+    "signal_key": "doorStatus_Meas",
+    "tams_id": "TAMS-2",
+    "model_path": "bo/can/doorStatus_Meas",
+    "type": "String",
+    "description": "",
+    "source": "engineer_confirmed_local_overlay"
+  },
+  "DoorStatus_Meas": {
+    "signal_key": "DoorStatus_Meas",
+    "tams_id": "TAMS-2",
+    "model_path": "bo/DoorStatus_Meas",
+    "type": "String",
+    "description": "",
+    "source": "engineer_confirmed_local_overlay"
+  },
+  "window_position": {
+    "signal_key": "window_position",
+    "tams_id": "TAMS-1",
+    "model_path": "bo/window_position",
+    "type": "String",
+    "description": "",
+    "source": "engineer_confirmed_local_overlay"
+  },
+  "BonnetStatus": {
+    "signal_key": "BonnetStatus",
+    "tams_id": "Tams-1",
+    "model_path": "Bo/can",
+    "type": "String",
+    "description": "",
+    "source": "engineer_confirmed_local_overlay"
+  },
+  "Doorstatus": {
+    "signal_key": "Doorstatus",
+    "tams_id": "Tams-1",
+    "model_path": "Bo/Doorstatus",
+    "type": "String",
+    "description": "",
+    "source": "engineer_confirmed_local_overlay"
+  }
+}

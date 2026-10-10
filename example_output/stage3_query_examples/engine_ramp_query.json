@@ -1,0 +1,86 @@
+[
+  {
+    "index_id": "b358647ff27f939d",
+    "chunk_id": "9d9c94909b7603c1",
+    "source_file": "02_vehicle_dynamics.feature",
+    "chunk_type": "gherkin_scenario",
+    "text": "Feature: Vehicle dynamics\nScenario: Ramp engine speed\nWhen the engine speed ramps from \"800\" to \"3000\" in \"10\" seconds",
+    "metadata": {
+      "feature": "Vehicle dynamics",
+      "scenario": "Ramp engine speed"
+    },
+    "score": 0.711154,
+    "semantic_score": 0.675478,
+    "lexical_score": 0.818182
+  },
+  {
+    "index_id": "51692a5e7c89e39b",
+    "chunk_id": "fa7614d78fbd6c6c",
+    "source_file": "04_engine_speed_ramp.py",
+    "chunk_type": "keyword_pattern",
+    "text": "Keyword pattern: the engine speed ramps from \"{start}\" to \"{end}\" in \"{duration}\" seconds\nStep type: when\nParameters: start, end, duration",
+    "metadata": {
+      "sd_file": "04_engine_speed_ramp.py",
+      "domain": "Powertrain",
+      "platform": "TAMS-201",
+      "parse_status": "fallback",
+      "step_type": "when",
+      "keyword_pattern": "the engine speed ramps from \"{start}\" to \"{end}\" in \"{duration}\" seconds"
+    },
+    "score": 0.495411,
+    "semantic_score": 0.418124,
+    "lexical_score": 0.727273
+  },
+  {
+    "index_id": "9a08e3a6552d3b6e",
+    "chunk_id": "00110656cf7efd8d",
+    "source_file": "04_engine_speed_ramp.py",
+    "chunk_type": "source_code",
+    "text": "\"\"\"\nThis sd file is used for ramping engine speed from one value to another\"\nAuthor - vijay\nDomain - Powertrain\ndate Modified - synthetic training dataset\n\"\"\"\n\nfrom behave import given, when, then\nfrom step_definitions_manager import TAMS, platform\n\n@platform(\"TAMS-201\")\n@TAMS([201])\n@when('the engine speed ramps from \"{start}\" to \"{end}\" in \"{duration}\" seconds')\ndef step_impl(context, start, end, duration):\n    try:\n        block_to_add = \"\"\n        parameters = {\n            \"String\": {\n                \"Variable\": [\"\", context.signal.calalogue.get_key_value(\"engine_speed\"), \"in\",]\n            },\n            \"Float\": {\"StartValue\": [\"\", start, \"in\"],\n                      \"EndValue\": [\"\", end, \"in\"],\n                      \"Duration\": [\"\", duration, \"in\"],\n                      \"PostDelay\": [\"\", \"0.5\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"engine_speed_ramp\",\n        lib_reference = context.api_calalogue.get_key_value(\"ramp_signal\"),\n        arguments= parameters,\n    )\n\n    except Exception as err:\n        raise err\n\n    context.xml_block_to_add = block_to_add\n    context.signals_used.append(\"engine_speed\")\n",
+    "metadata": {
+      "sd_file": "04_engine_speed_ramp.py",
+      "domain": "Powertrain",
+      "platform": "TAMS-201",
+      "parse_status": "fallback",
+      "source_kind": "raw_python"
+    },
+    "score": 0.404156,
+    "semantic_score": 0.266148,
+    "lexical_score": 0.818182
+  },
+  {
+    "index_id": "5219907a7f11118d",
+    "chunk_id": "90326dc6a3ddf237",
+    "source_file": "03_vehicle_speed_set.py",
+    "chunk_type": "source_code",
+    "text": "\"\"\"\nThis sd file is used for setting vehicle speed\"\nAuthor - vijay\nDomain - Vehicle Dynamics\ndate Modified - synthetic training dataset\n\"\"\"\n\nfrom behave import given, when, then\nfrom step_definitions_manager import TAMS, platform\n\n@platform(\"TAMS-200\")\n@TAMS([200])\n@when('the vehicle speed is \"{speed}\"')\ndef step_impl(context, speed):\n    try:\n        block_to_add = \"\"\n        parameters = {\n            \"String\": {\n                \"Variable\": [\"\", context.signal.calalogue.get_key_value(\"vehicle_speed\"), \"in\",]\n            },\n            \"Variant\": {\"value\": [\"\", speed, \"in\"]},\n            \"Float\": {\"PostDelay\": [\"\", \"0.3\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"vehicle_speed_\" + speed,\n        lib_reference = context.api_calalogue.get_key_value(\"set_signal\"),\n        arguments= parameters,\n    )\n\n    except Exception as err:\n        raise err\n\n    context.xml_block_to_add = block_to_add\n    context.signals_used.append(\"vehicle_speed\")\n",
+    "metadata": {
+      "sd_file": "03_vehicle_speed_set.py",
+      "domain": "Vehicle Dynamics",
+      "platform": "TAMS-200",
+      "parse_status": "fallback",
+      "source_kind": "raw_python"
+    },
+    "score": 0.173858,
+    "semantic_score": 0.110598,
+    "lexical_score": 0.363636
+  },
+  {
+    "index_id": "cf9a91b1a7141bee",
+    "chunk_id": "a7b1859fe7785e0c",
+    "source_file": "03_vehicle_speed_set.py",
+    "chunk_type": "keyword_pattern",
+    "text": "Keyword pattern: the vehicle speed is \"{speed}\"\nStep type: when\nParameters: speed",
+    "metadata": {
+      "sd_file": "03_vehicle_speed_set.py",
+      "domain": "Vehicle Dynamics",
+      "platform": "TAMS-200",
+      "parse_status": "fallback",
+      "step_type": "when",
+      "keyword_pattern": "the vehicle speed is \"{speed}\""
+    },
+    "score": 0.144958,
+    "semantic_score": 0.132671,
+    "lexical_score": 0.181818
+  }
+]

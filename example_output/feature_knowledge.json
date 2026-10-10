@@ -1,0 +1,136 @@
+[
+  {
+    "feature_file": "01_body_doors.feature",
+    "source_path": "/mnt/data/sd_agent_rag_training_dataset_full/metadata/01_body_doors.feature",
+    "feature": "Body door control",
+    "scenarios": [
+      {
+        "name": "Open the driver door",
+        "steps": [
+          {
+            "keyword": "Given",
+            "text": "the driver door is \"open\""
+          }
+        ]
+      },
+      {
+        "name": "Close the driver door",
+        "steps": [
+          {
+            "keyword": "When",
+            "text": "the driver door is \"close\""
+          }
+        ]
+      },
+      {
+        "name": "Validate passenger door",
+        "steps": [
+          {
+            "keyword": "Then",
+            "text": "the passenger door should be \"closed\""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "feature_file": "02_vehicle_dynamics.feature",
+    "source_path": "/mnt/data/sd_agent_rag_training_dataset_full/metadata/02_vehicle_dynamics.feature",
+    "feature": "Vehicle dynamics",
+    "scenarios": [
+      {
+        "name": "Set vehicle speed",
+        "steps": [
+          {
+            "keyword": "When",
+            "text": "the vehicle speed is \"50\""
+          }
+        ]
+      },
+      {
+        "name": "Ramp engine speed",
+        "steps": [
+          {
+            "keyword": "When",
+            "text": "the engine speed ramps from \"800\" to \"3000\" in \"10\" seconds"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "feature_file": "03_powertrain.feature",
+    "source_path": "/mnt/data/sd_agent_rag_training_dataset_full/metadata/03_powertrain.feature",
+    "feature": "Powertrain state",
+    "scenarios": [
+      {
+        "name": "Set ignition",
+        "steps": [
+          {
+            "keyword": "When",
+            "text": "the ignition is set to \"ON\""
+          }
+        ]
+      },
+      {
+        "name": "Shift gear",
+        "steps": [
+          {
+            "keyword": "When",
+            "text": "the gear is shifted to \"drive\""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "feature_file": "04_body_validation.feature",
+    "source_path": "/mnt/data/sd_agent_rag_training_dataset_full/metadata/04_body_validation.feature",
+    "feature": "Body validation",
+    "scenarios": [
+      {
+        "name": "Validate brake pressure",
+        "steps": [
+          {
+            "keyword": "Then",
+            "text": "the brake pressure should be \"120\""
+          }
+        ]
+      },
+      {
+        "name": "Toggle hazard lamps",
+        "steps": [
+          {
+            "keyword": "When",
+            "text": "the hazard lamps are toggled"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "feature_file": "05_body_combined.feature",
+    "source_path": "/mnt/data/sd_agent_rag_training_dataset_full/metadata/05_body_combined.feature",
+    "feature": "Combined body operations",
+    "scenarios": [
+      {
+        "name": "Set driver window and seat belt",
+        "steps": [
+          {
+            "keyword": "When",
+            "text": "the driver window and seat belt are set"
+          }
+        ]
+      },
+      {
+        "name": "Reset body ECU",
+        "steps": [
+          {
+            "keyword": "When",
+            "text": "the body ECU is reset"
+          }
+        ]
+      }
+    ]
+  }
+]

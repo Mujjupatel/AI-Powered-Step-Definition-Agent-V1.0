@@ -1,0 +1,1148 @@
+[
+  {
+    "sd_file": "01_driver_door_status.py",
+    "source_path": "/mnt/data/sd_agent_rag_training_dataset_full/sd_files/01_driver_door_status.py",
+    "source_code": "\"\"\"\nThis sd file is used for opening or closing the driver door\"\nAuthor - vijay\nDomain - Body\ndate Modified - synthetic training dataset\n\"\"\"\n\nfrom behave import given, when, then\nfrom step_definitions_manager import TAMS, platform\n\n@platform(\"TAMS-123\")\n@TAMS([123])\n@given('the driver door is \"{status}\"')\n@when('the driver door is \"{status}\"')\ndef step_impl(context, status):\n    \"\"\"\n    Inputs:\n        status: open/close\n    APIs:\n        text_api, set_signal\n    Signal:\n        door_status\n    \"\"\"\n    try:\n        block_to_add = \"\"\n\n        status_dict = {\"open\": \"1\", \"close\": \"0\"}\n\n        keyword = \"the driver door is \" + status\n\n        parameters = {\n            \"String\": {\"text\": [\"\", keyword, \"in\"]},\n            \"Integer\": {\"text_level\": [\"\", \"7\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Frame\",\n        name= keyword,\n        lib_reference = context.api_calalogue.get_key_value(\"text_api\"),\n        arguments= parameters,\n    )\n\n        parameters = {\n            \"String\": {\n                \"Variable\": [\"\", context.signal.calalogue.get_key_value(\"door_status\"), \"in\",]\n            },\n            \"Float\": {\"PostDelay\": [\"\", \"0.5\", \"in\"]},\n            \"Variant\": {\"value\": [\"\", status_dict[status], \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"door_status\" + status_dict[status],\n        lib_reference = context.api_calalogue.get_key_value(\"set_signal\"),\n        arguments= parameters,\n    )\n\n    except Exception as err:\n        raise err\n\n    context.xml_block_to_add = block_to_add\n    context.signals_used.append(\"door_status\")\n",
+    "parse_status": "fallback",
+    "syntax_error": {
+      "line": 35,
+      "column": 5,
+      "message": "expected 'except' or 'finally' block",
+      "text": "block_to_add += context.test_exec_gen.get_library_call("
+    },
+    "metadata": {
+      "module_docstring": "This sd file is used for opening or closing the driver door\"\nAuthor - vijay\nDomain - Body\ndate Modified - synthetic training dataset",
+      "author": "vijay",
+      "domain": "Body",
+      "date_modified": "synthetic training dataset",
+      "platform": "TAMS-123",
+      "tams_ids": [
+        123
+      ],
+      "function_name": "step_impl",
+      "function_parameters": [
+        "status"
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {
+          "step_type": "given",
+          "pattern": "the driver door is \"{status}\""
+        },
+        {
+          "step_type": "when",
+          "pattern": "the driver door is \"{status}\""
+        }
+      ],
+      "parameters": [
+        "status"
+      ]
+    },
+    "value_mappings": {
+      "status_dict": {
+        "open": "1",
+        "close": "0"
+      }
+    },
+    "apis": [
+      {
+        "catalogue_key": "text_api",
+        "block_type": "Frame",
+        "library_name": {
+          "expression": "keyword"
+        },
+        "line": 35
+      },
+      {
+        "catalogue_key": "set_signal",
+        "block_type": "Non Frame",
+        "library_name": {
+          "expression": "'door_status' + status_dict[status]"
+        },
+        "line": 49
+      }
+    ],
+    "signals": [
+      {
+        "catalogue_key": "door_status",
+        "line": 44
+      }
+    ],
+    "api_parameter_mapping": {
+      "text_api": [
+        {
+          "String": {
+            "text": [
+              "",
+              {
+                "expression": "keyword"
+              },
+              "in"
+            ]
+          },
+          "Integer": {
+            "text_level": [
+              "",
+              "7",
+              "in"
+            ]
+          }
+        }
+      ],
+      "set_signal": [
+        {
+          "String": {
+            "Variable": [
+              "",
+              {
+                "expression": "context.signal.calalogue.get_key_value('door_status')"
+              },
+              "in"
+            ]
+          },
+          "Float": {
+            "PostDelay": [
+              "",
+              "0.5",
+              "in"
+            ]
+          },
+          "Variant": {
+            "value": [
+              "",
+              {
+                "expression": "status_dict[status]"
+              },
+              "in"
+            ]
+          }
+        }
+      ]
+    },
+    "execution_sequence": [
+      {
+        "type": "api_call",
+        "api_key": "text_api",
+        "line": 35
+      },
+      {
+        "type": "api_call",
+        "api_key": "set_signal",
+        "line": 49
+      }
+    ],
+    "context_outputs": [],
+    "observations": [],
+    "issues": [
+      {
+        "severity": "ERROR",
+        "code": "SYNTAX_ERROR",
+        "message": "Python syntax error: expected 'except' or 'finally' block",
+        "file": "01_driver_door_status.py",
+        "line": 35,
+        "details": {
+          "syntax_error": {
+            "line": 35,
+            "column": 5,
+            "message": "expected 'except' or 'finally' block",
+            "text": "block_to_add += context.test_exec_gen.get_library_call("
+          }
+        }
+      }
+    ]
+  },
+  {
+    "sd_file": "02_passenger_door_check.py",
+    "source_path": "/mnt/data/sd_agent_rag_training_dataset_full/sd_files/02_passenger_door_check.py",
+    "source_code": "\"\"\"\nThis sd file is used for checking the passenger door status\"\nAuthor - vijay\nDomain - Body\ndate Modified - synthetic training dataset\n\"\"\"\n\nfrom behave import given, when, then\nfrom step_definitions_manager import TAMS, platform\n\n@platform(\"TAMS-123\")\n@TAMS([124])\n@then('the passenger door should be \"{status}\"')\ndef step_impl(context, status):\n    try:\n        block_to_add = \"\"\n        expected = {\"open\": \"1\", \"close\": \"0\"}\n\n        parameters = {\n            \"String\": {\n                \"Variable\": [\"\", context.signal.calalogue.get_key_value(\"passenger_door_status\"), \"in\",]\n            },\n            \"Variant\": {\"ExpectedValue\": [\"\", expected[status], \"in\"]},\n            \"Float\": {\"Tolerance\": [\"\", \"0.0\", \"in\"],\n                      \"Timeout\": [\"\", \"2.0\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"passenger_door_status_check\",\n        lib_reference = context.api_calalogue.get_key_value(\"check_signal\"),\n        arguments= parameters,\n    )\n\n    except Exception as err:\n        raise err\n\n    context.xml_block_to_add = block_to_add\n    context.signals_used.append(\"passenger_door_status\")\n",
+    "parse_status": "fallback",
+    "syntax_error": {
+      "line": 27,
+      "column": 5,
+      "message": "expected 'except' or 'finally' block",
+      "text": "block_to_add += context.test_exec_gen.get_library_call("
+    },
+    "metadata": {
+      "module_docstring": "This sd file is used for checking the passenger door status\"\nAuthor - vijay\nDomain - Body\ndate Modified - synthetic training dataset",
+      "author": "vijay",
+      "domain": "Body",
+      "date_modified": "synthetic training dataset",
+      "platform": "TAMS-123",
+      "tams_ids": [
+        124
+      ],
+      "function_name": "step_impl",
+      "function_parameters": [
+        "status"
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {
+          "step_type": "then",
+          "pattern": "the passenger door should be \"{status}\""
+        }
+      ],
+      "parameters": [
+        "status"
+      ]
+    },
+    "value_mappings": {},
+    "apis": [
+      {
+        "catalogue_key": "check_signal",
+        "block_type": "Non Frame",
+        "library_name": "passenger_door_status_check",
+        "line": 27
+      }
+    ],
+    "signals": [
+      {
+        "catalogue_key": "passenger_door_status",
+        "line": 21
+      }
+    ],
+    "api_parameter_mapping": {
+      "check_signal": [
+        {
+          "String": {
+            "Variable": [
+              "",
+              {
+                "expression": "context.signal.calalogue.get_key_value('passenger_door_status')"
+              },
+              "in"
+            ]
+          },
+          "Variant": {
+            "ExpectedValue": [
+              "",
+              {
+                "expression": "expected[status]"
+              },
+              "in"
+            ]
+          },
+          "Float": {
+            "Tolerance": [
+              "",
+              "0.0",
+              "in"
+            ],
+            "Timeout": [
+              "",
+              "2.0",
+              "in"
+            ]
+          }
+        }
+      ]
+    },
+    "execution_sequence": [
+      {
+        "type": "api_call",
+        "api_key": "check_signal",
+        "line": 27
+      }
+    ],
+    "context_outputs": [],
+    "observations": [],
+    "issues": [
+      {
+        "severity": "ERROR",
+        "code": "SYNTAX_ERROR",
+        "message": "Python syntax error: expected 'except' or 'finally' block",
+        "file": "02_passenger_door_check.py",
+        "line": 27,
+        "details": {
+          "syntax_error": {
+            "line": 27,
+            "column": 5,
+            "message": "expected 'except' or 'finally' block",
+            "text": "block_to_add += context.test_exec_gen.get_library_call("
+          }
+        }
+      }
+    ]
+  },
+  {
+    "sd_file": "03_vehicle_speed_set.py",
+    "source_path": "/mnt/data/sd_agent_rag_training_dataset_full/sd_files/03_vehicle_speed_set.py",
+    "source_code": "\"\"\"\nThis sd file is used for setting vehicle speed\"\nAuthor - vijay\nDomain - Vehicle Dynamics\ndate Modified - synthetic training dataset\n\"\"\"\n\nfrom behave import given, when, then\nfrom step_definitions_manager import TAMS, platform\n\n@platform(\"TAMS-200\")\n@TAMS([200])\n@when('the vehicle speed is \"{speed}\"')\ndef step_impl(context, speed):\n    try:\n        block_to_add = \"\"\n        parameters = {\n            \"String\": {\n                \"Variable\": [\"\", context.signal.calalogue.get_key_value(\"vehicle_speed\"), \"in\",]\n            },\n            \"Variant\": {\"value\": [\"\", speed, \"in\"]},\n            \"Float\": {\"PostDelay\": [\"\", \"0.3\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"vehicle_speed_\" + speed,\n        lib_reference = context.api_calalogue.get_key_value(\"set_signal\"),\n        arguments= parameters,\n    )\n\n    except Exception as err:\n        raise err\n\n    context.xml_block_to_add = block_to_add\n    context.signals_used.append(\"vehicle_speed\")\n",
+    "parse_status": "fallback",
+    "syntax_error": {
+      "line": 24,
+      "column": 5,
+      "message": "expected 'except' or 'finally' block",
+      "text": "block_to_add += context.test_exec_gen.get_library_call("
+    },
+    "metadata": {
+      "module_docstring": "This sd file is used for setting vehicle speed\"\nAuthor - vijay\nDomain - Vehicle Dynamics\ndate Modified - synthetic training dataset",
+      "author": "vijay",
+      "domain": "Vehicle Dynamics",
+      "date_modified": "synthetic training dataset",
+      "platform": "TAMS-200",
+      "tams_ids": [
+        200
+      ],
+      "function_name": "step_impl",
+      "function_parameters": [
+        "speed"
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {
+          "step_type": "when",
+          "pattern": "the vehicle speed is \"{speed}\""
+        }
+      ],
+      "parameters": [
+        "speed"
+      ]
+    },
+    "value_mappings": {},
+    "apis": [
+      {
+        "catalogue_key": "set_signal",
+        "block_type": "Non Frame",
+        "library_name": {
+          "expression": "'vehicle_speed_' + speed"
+        },
+        "line": 24
+      }
+    ],
+    "signals": [
+      {
+        "catalogue_key": "vehicle_speed",
+        "line": 19
+      }
+    ],
+    "api_parameter_mapping": {
+      "set_signal": [
+        {
+          "String": {
+            "Variable": [
+              "",
+              {
+                "expression": "context.signal.calalogue.get_key_value('vehicle_speed')"
+              },
+              "in"
+            ]
+          },
+          "Variant": {
+            "value": [
+              "",
+              {
+                "expression": "speed"
+              },
+              "in"
+            ]
+          },
+          "Float": {
+            "PostDelay": [
+              "",
+              "0.3",
+              "in"
+            ]
+          }
+        }
+      ]
+    },
+    "execution_sequence": [
+      {
+        "type": "api_call",
+        "api_key": "set_signal",
+        "line": 24
+      }
+    ],
+    "context_outputs": [],
+    "observations": [],
+    "issues": [
+      {
+        "severity": "ERROR",
+        "code": "SYNTAX_ERROR",
+        "message": "Python syntax error: expected 'except' or 'finally' block",
+        "file": "03_vehicle_speed_set.py",
+        "line": 24,
+        "details": {
+          "syntax_error": {
+            "line": 24,
+            "column": 5,
+            "message": "expected 'except' or 'finally' block",
+            "text": "block_to_add += context.test_exec_gen.get_library_call("
+          }
+        }
+      }
+    ]
+  },
+  {
+    "sd_file": "04_engine_speed_ramp.py",
+    "source_path": "/mnt/data/sd_agent_rag_training_dataset_full/sd_files/04_engine_speed_ramp.py",
+    "source_code": "\"\"\"\nThis sd file is used for ramping engine speed from one value to another\"\nAuthor - vijay\nDomain - Powertrain\ndate Modified - synthetic training dataset\n\"\"\"\n\nfrom behave import given, when, then\nfrom step_definitions_manager import TAMS, platform\n\n@platform(\"TAMS-201\")\n@TAMS([201])\n@when('the engine speed ramps from \"{start}\" to \"{end}\" in \"{duration}\" seconds')\ndef step_impl(context, start, end, duration):\n    try:\n        block_to_add = \"\"\n        parameters = {\n            \"String\": {\n                \"Variable\": [\"\", context.signal.calalogue.get_key_value(\"engine_speed\"), \"in\",]\n            },\n            \"Float\": {\"StartValue\": [\"\", start, \"in\"],\n                      \"EndValue\": [\"\", end, \"in\"],\n                      \"Duration\": [\"\", duration, \"in\"],\n                      \"PostDelay\": [\"\", \"0.5\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"engine_speed_ramp\",\n        lib_reference = context.api_calalogue.get_key_value(\"ramp_signal\"),\n        arguments= parameters,\n    )\n\n    except Exception as err:\n        raise err\n\n    context.xml_block_to_add = block_to_add\n    context.signals_used.append(\"engine_speed\")\n",
+    "parse_status": "fallback",
+    "syntax_error": {
+      "line": 26,
+      "column": 5,
+      "message": "expected 'except' or 'finally' block",
+      "text": "block_to_add += context.test_exec_gen.get_library_call("
+    },
+    "metadata": {
+      "module_docstring": "This sd file is used for ramping engine speed from one value to another\"\nAuthor - vijay\nDomain - Powertrain\ndate Modified - synthetic training dataset",
+      "author": "vijay",
+      "domain": "Powertrain",
+      "date_modified": "synthetic training dataset",
+      "platform": "TAMS-201",
+      "tams_ids": [
+        201
+      ],
+      "function_name": "step_impl",
+      "function_parameters": [
+        "start",
+        "end",
+        "duration"
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {
+          "step_type": "when",
+          "pattern": "the engine speed ramps from \"{start}\" to \"{end}\" in \"{duration}\" seconds"
+        }
+      ],
+      "parameters": [
+        "start",
+        "end",
+        "duration"
+      ]
+    },
+    "value_mappings": {},
+    "apis": [
+      {
+        "catalogue_key": "ramp_signal",
+        "block_type": "Non Frame",
+        "library_name": "engine_speed_ramp",
+        "line": 26
+      }
+    ],
+    "signals": [
+      {
+        "catalogue_key": "engine_speed",
+        "line": 19
+      }
+    ],
+    "api_parameter_mapping": {
+      "ramp_signal": [
+        {
+          "String": {
+            "Variable": [
+              "",
+              {
+                "expression": "context.signal.calalogue.get_key_value('engine_speed')"
+              },
+              "in"
+            ]
+          },
+          "Float": {
+            "StartValue": [
+              "",
+              {
+                "expression": "start"
+              },
+              "in"
+            ],
+            "EndValue": [
+              "",
+              {
+                "expression": "end"
+              },
+              "in"
+            ],
+            "Duration": [
+              "",
+              {
+                "expression": "duration"
+              },
+              "in"
+            ],
+            "PostDelay": [
+              "",
+              "0.5",
+              "in"
+            ]
+          }
+        }
+      ]
+    },
+    "execution_sequence": [
+      {
+        "type": "api_call",
+        "api_key": "ramp_signal",
+        "line": 26
+      }
+    ],
+    "context_outputs": [],
+    "observations": [],
+    "issues": [
+      {
+        "severity": "ERROR",
+        "code": "SYNTAX_ERROR",
+        "message": "Python syntax error: expected 'except' or 'finally' block",
+        "file": "04_engine_speed_ramp.py",
+        "line": 26,
+        "details": {
+          "syntax_error": {
+            "line": 26,
+            "column": 5,
+            "message": "expected 'except' or 'finally' block",
+            "text": "block_to_add += context.test_exec_gen.get_library_call("
+          }
+        }
+      }
+    ]
+  },
+  {
+    "sd_file": "05_ignition_sequence.py",
+    "source_path": "/mnt/data/sd_agent_rag_training_dataset_full/sd_files/05_ignition_sequence.py",
+    "source_code": "\"\"\"\nThis sd file is used for setting the ignition state and waiting for stabilization\"\nAuthor - vijay\nDomain - Power\ndate Modified - synthetic training dataset\n\"\"\"\n\nfrom behave import given, when, then\nfrom step_definitions_manager import TAMS, platform\n\n@platform(\"TAMS-202\")\n@TAMS([202])\n@when('the ignition is set to \"{state}\"')\ndef step_impl(context, state):\n    try:\n        block_to_add = \"\"\n        parameters = {\n            \"String\": {\n                \"Variable\": [\"\", context.signal.calalogue.get_key_value(\"ignition_state\"), \"in\",]\n            },\n            \"String\": {\"EnumValue\": [\"\", state, \"in\"]},\n            \"Float\": {\"PostDelay\": [\"\", \"1.0\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"ignition_\" + state,\n        lib_reference = context.api_calalogue.get_key_value(\"set_enum_signal\"),\n        arguments= parameters,\n    )\n\n        parameters = {\n            \"Float\": {\"Duration\": [\"\", \"2.0\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"ignition_stabilization_wait\",\n        lib_reference = context.api_calalogue.get_key_value(\"wait\"),\n        arguments= parameters,\n    )\n\n    except Exception as err:\n        raise err\n\n    context.xml_block_to_add = block_to_add\n    context.signals_used.append(\"ignition_state\")\n",
+    "parse_status": "fallback",
+    "syntax_error": {
+      "line": 24,
+      "column": 5,
+      "message": "expected 'except' or 'finally' block",
+      "text": "block_to_add += context.test_exec_gen.get_library_call("
+    },
+    "metadata": {
+      "module_docstring": "This sd file is used for setting the ignition state and waiting for stabilization\"\nAuthor - vijay\nDomain - Power\ndate Modified - synthetic training dataset",
+      "author": "vijay",
+      "domain": "Power",
+      "date_modified": "synthetic training dataset",
+      "platform": "TAMS-202",
+      "tams_ids": [
+        202
+      ],
+      "function_name": "step_impl",
+      "function_parameters": [
+        "state"
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {
+          "step_type": "when",
+          "pattern": "the ignition is set to \"{state}\""
+        }
+      ],
+      "parameters": [
+        "state"
+      ]
+    },
+    "value_mappings": {},
+    "apis": [
+      {
+        "catalogue_key": "set_enum_signal",
+        "block_type": "Non Frame",
+        "library_name": {
+          "expression": "'ignition_' + state"
+        },
+        "line": 24
+      },
+      {
+        "catalogue_key": "wait",
+        "block_type": "Non Frame",
+        "library_name": "ignition_stabilization_wait",
+        "line": 34
+      }
+    ],
+    "signals": [
+      {
+        "catalogue_key": "ignition_state",
+        "line": 19
+      }
+    ],
+    "api_parameter_mapping": {
+      "set_enum_signal": [
+        {
+          "String": {
+            "EnumValue": [
+              "",
+              {
+                "expression": "state"
+              },
+              "in"
+            ]
+          },
+          "Float": {
+            "PostDelay": [
+              "",
+              "1.0",
+              "in"
+            ]
+          }
+        }
+      ],
+      "wait": [
+        {
+          "Float": {
+            "Duration": [
+              "",
+              "2.0",
+              "in"
+            ]
+          }
+        }
+      ]
+    },
+    "execution_sequence": [
+      {
+        "type": "api_call",
+        "api_key": "set_enum_signal",
+        "line": 24
+      },
+      {
+        "type": "api_call",
+        "api_key": "wait",
+        "line": 34
+      }
+    ],
+    "context_outputs": [],
+    "observations": [],
+    "issues": [
+      {
+        "severity": "ERROR",
+        "code": "SYNTAX_ERROR",
+        "message": "Python syntax error: expected 'except' or 'finally' block",
+        "file": "05_ignition_sequence.py",
+        "line": 24,
+        "details": {
+          "syntax_error": {
+            "line": 24,
+            "column": 5,
+            "message": "expected 'except' or 'finally' block",
+            "text": "block_to_add += context.test_exec_gen.get_library_call("
+          }
+        }
+      }
+    ]
+  },
+  {
+    "sd_file": "06_gear_position.py",
+    "source_path": "/mnt/data/sd_agent_rag_training_dataset_full/sd_files/06_gear_position.py",
+    "source_code": "\"\"\"\nThis sd file is used for changing the selected gear position\"\nAuthor - vijay\nDomain - Powertrain\ndate Modified - synthetic training dataset\n\"\"\"\n\nfrom behave import given, when, then\nfrom step_definitions_manager import TAMS, platform\n\n@platform(\"TAMS-203\")\n@TAMS([203])\n@when('the gear is shifted to \"{gear}\"')\ndef step_impl(context, gear):\n    try:\n        block_to_add = \"\"\n        valid_gears = {\"park\": \"P\", \"reverse\": \"R\", \"neutral\": \"N\", \"drive\": \"D\"}\n\n        if gear not in valid_gears:\n            raise ValueError(\"Unsupported gear position: \" + gear)\n\n        parameters = {\n            \"String\": {\n                \"Variable\": [\"\", context.signal.calalogue.get_key_value(\"gear_position\"), \"in\",]\n            },\n            \"String\": {\"EnumValue\": [\"\", valid_gears[gear], \"in\"]},\n            \"Float\": {\"PostDelay\": [\"\", \"0.8\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"gear_\" + gear,\n        lib_reference = context.api_calalogue.get_key_value(\"set_enum_signal\"),\n        arguments= parameters,\n    )\n\n    except Exception as err:\n        raise err\n\n    context.xml_block_to_add = block_to_add\n    context.signals_used.append(\"gear_position\")\n",
+    "parse_status": "fallback",
+    "syntax_error": {
+      "line": 29,
+      "column": 5,
+      "message": "expected 'except' or 'finally' block",
+      "text": "block_to_add += context.test_exec_gen.get_library_call("
+    },
+    "metadata": {
+      "module_docstring": "This sd file is used for changing the selected gear position\"\nAuthor - vijay\nDomain - Powertrain\ndate Modified - synthetic training dataset",
+      "author": "vijay",
+      "domain": "Powertrain",
+      "date_modified": "synthetic training dataset",
+      "platform": "TAMS-203",
+      "tams_ids": [
+        203
+      ],
+      "function_name": "step_impl",
+      "function_parameters": [
+        "gear"
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {
+          "step_type": "when",
+          "pattern": "the gear is shifted to \"{gear}\""
+        }
+      ],
+      "parameters": [
+        "gear"
+      ]
+    },
+    "value_mappings": {},
+    "apis": [
+      {
+        "catalogue_key": "set_enum_signal",
+        "block_type": "Non Frame",
+        "library_name": {
+          "expression": "'gear_' + gear"
+        },
+        "line": 29
+      }
+    ],
+    "signals": [
+      {
+        "catalogue_key": "gear_position",
+        "line": 24
+      }
+    ],
+    "api_parameter_mapping": {
+      "set_enum_signal": [
+        {
+          "String": {
+            "EnumValue": [
+              "",
+              {
+                "expression": "valid_gears[gear]"
+              },
+              "in"
+            ]
+          },
+          "Float": {
+            "PostDelay": [
+              "",
+              "0.8",
+              "in"
+            ]
+          }
+        }
+      ]
+    },
+    "execution_sequence": [
+      {
+        "type": "api_call",
+        "api_key": "set_enum_signal",
+        "line": 29
+      }
+    ],
+    "context_outputs": [],
+    "observations": [],
+    "issues": [
+      {
+        "severity": "ERROR",
+        "code": "SYNTAX_ERROR",
+        "message": "Python syntax error: expected 'except' or 'finally' block",
+        "file": "06_gear_position.py",
+        "line": 29,
+        "details": {
+          "syntax_error": {
+            "line": 29,
+            "column": 5,
+            "message": "expected 'except' or 'finally' block",
+            "text": "block_to_add += context.test_exec_gen.get_library_call("
+          }
+        }
+      }
+    ]
+  },
+  {
+    "sd_file": "07_brake_pressure_validation.py",
+    "source_path": "/mnt/data/sd_agent_rag_training_dataset_full/sd_files/07_brake_pressure_validation.py",
+    "source_code": "\"\"\"\nThis sd file is used for validating brake pressure\"\nAuthor - vijay\nDomain - Brake\ndate Modified - synthetic training dataset\n\"\"\"\n\nfrom behave import given, when, then\nfrom step_definitions_manager import TAMS, platform\n\n@platform(\"TAMS-204\")\n@TAMS([204])\n@then('the brake pressure should be \"{pressure}\"')\ndef step_impl(context, pressure):\n    try:\n        block_to_add = \"\"\n        parameters = {\n            \"String\": {\n                \"Variable\": [\"\", context.signal.calalogue.get_key_value(\"brake_pressure\"), \"in\",]\n            },\n            \"Variant\": {\"ExpectedValue\": [\"\", pressure, \"in\"]},\n            \"Float\": {\"Tolerance\": [\"\", \"2.0\", \"in\"],\n                      \"Timeout\": [\"\", \"3.0\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"brake_pressure_validation\",\n        lib_reference = context.api_calalogue.get_key_value(\"check_signal\"),\n        arguments= parameters,\n    )\n\n    except Exception as err:\n        raise err\n\n    context.xml_block_to_add = block_to_add\n    context.signals_used.append(\"brake_pressure\")\n",
+    "parse_status": "fallback",
+    "syntax_error": {
+      "line": 25,
+      "column": 5,
+      "message": "expected 'except' or 'finally' block",
+      "text": "block_to_add += context.test_exec_gen.get_library_call("
+    },
+    "metadata": {
+      "module_docstring": "This sd file is used for validating brake pressure\"\nAuthor - vijay\nDomain - Brake\ndate Modified - synthetic training dataset",
+      "author": "vijay",
+      "domain": "Brake",
+      "date_modified": "synthetic training dataset",
+      "platform": "TAMS-204",
+      "tams_ids": [
+        204
+      ],
+      "function_name": "step_impl",
+      "function_parameters": [
+        "pressure"
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {
+          "step_type": "then",
+          "pattern": "the brake pressure should be \"{pressure}\""
+        }
+      ],
+      "parameters": [
+        "pressure"
+      ]
+    },
+    "value_mappings": {},
+    "apis": [
+      {
+        "catalogue_key": "check_signal",
+        "block_type": "Non Frame",
+        "library_name": "brake_pressure_validation",
+        "line": 25
+      }
+    ],
+    "signals": [
+      {
+        "catalogue_key": "brake_pressure",
+        "line": 19
+      }
+    ],
+    "api_parameter_mapping": {
+      "check_signal": [
+        {
+          "String": {
+            "Variable": [
+              "",
+              {
+                "expression": "context.signal.calalogue.get_key_value('brake_pressure')"
+              },
+              "in"
+            ]
+          },
+          "Variant": {
+            "ExpectedValue": [
+              "",
+              {
+                "expression": "pressure"
+              },
+              "in"
+            ]
+          },
+          "Float": {
+            "Tolerance": [
+              "",
+              "2.0",
+              "in"
+            ],
+            "Timeout": [
+              "",
+              "3.0",
+              "in"
+            ]
+          }
+        }
+      ]
+    },
+    "execution_sequence": [
+      {
+        "type": "api_call",
+        "api_key": "check_signal",
+        "line": 25
+      }
+    ],
+    "context_outputs": [],
+    "observations": [],
+    "issues": [
+      {
+        "severity": "ERROR",
+        "code": "SYNTAX_ERROR",
+        "message": "Python syntax error: expected 'except' or 'finally' block",
+        "file": "07_brake_pressure_validation.py",
+        "line": 25,
+        "details": {
+          "syntax_error": {
+            "line": 25,
+            "column": 5,
+            "message": "expected 'except' or 'finally' block",
+            "text": "block_to_add += context.test_exec_gen.get_library_call("
+          }
+        }
+      }
+    ]
+  },
+  {
+    "sd_file": "08_hazard_toggle.py",
+    "source_path": "/mnt/data/sd_agent_rag_training_dataset_full/sd_files/08_hazard_toggle.py",
+    "source_code": "\"\"\"\nThis sd file is used for toggling the hazard lamp state\"\nAuthor - vijay\nDomain - Body\ndate Modified - synthetic training dataset\n\"\"\"\n\nfrom behave import given, when, then\nfrom step_definitions_manager import TAMS, platform\n\n@platform(\"TAMS-205\")\n@TAMS([205])\n@when('the hazard lamps are toggled')\ndef step_impl(context):\n    try:\n        block_to_add = \"\"\n        parameters = {\n            \"String\": {\n                \"Variable\": [\"\", context.signal.calalogue.get_key_value(\"hazard_lamp_state\"), \"in\",]\n            },\n            \"Float\": {\"PostDelay\": [\"\", \"0.25\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"toggle_hazard_lamps\",\n        lib_reference = context.api_calalogue.get_key_value(\"toggle_signal\"),\n        arguments= parameters,\n    )\n\n    except Exception as err:\n        raise err\n\n    context.xml_block_to_add = block_to_add\n    context.signals_used.append(\"hazard_lamp_state\")\n",
+    "parse_status": "fallback",
+    "syntax_error": {
+      "line": 23,
+      "column": 5,
+      "message": "expected 'except' or 'finally' block",
+      "text": "block_to_add += context.test_exec_gen.get_library_call("
+    },
+    "metadata": {
+      "module_docstring": "This sd file is used for toggling the hazard lamp state\"\nAuthor - vijay\nDomain - Body\ndate Modified - synthetic training dataset",
+      "author": "vijay",
+      "domain": "Body",
+      "date_modified": "synthetic training dataset",
+      "platform": "TAMS-205",
+      "tams_ids": [
+        205
+      ],
+      "function_name": "step_impl",
+      "function_parameters": []
+    },
+    "keyword": {
+      "patterns": [
+        {
+          "step_type": "when",
+          "pattern": "the hazard lamps are toggled"
+        }
+      ],
+      "parameters": []
+    },
+    "value_mappings": {},
+    "apis": [
+      {
+        "catalogue_key": "toggle_signal",
+        "block_type": "Non Frame",
+        "library_name": "toggle_hazard_lamps",
+        "line": 23
+      }
+    ],
+    "signals": [
+      {
+        "catalogue_key": "hazard_lamp_state",
+        "line": 19
+      }
+    ],
+    "api_parameter_mapping": {
+      "toggle_signal": [
+        {
+          "String": {
+            "Variable": [
+              "",
+              {
+                "expression": "context.signal.calalogue.get_key_value('hazard_lamp_state')"
+              },
+              "in"
+            ]
+          },
+          "Float": {
+            "PostDelay": [
+              "",
+              "0.25",
+              "in"
+            ]
+          }
+        }
+      ]
+    },
+    "execution_sequence": [
+      {
+        "type": "api_call",
+        "api_key": "toggle_signal",
+        "line": 23
+      }
+    ],
+    "context_outputs": [],
+    "observations": [],
+    "issues": [
+      {
+        "severity": "ERROR",
+        "code": "SYNTAX_ERROR",
+        "message": "Python syntax error: expected 'except' or 'finally' block",
+        "file": "08_hazard_toggle.py",
+        "line": 23,
+        "details": {
+          "syntax_error": {
+            "line": 23,
+            "column": 5,
+            "message": "expected 'except' or 'finally' block",
+            "text": "block_to_add += context.test_exec_gen.get_library_call("
+          }
+        }
+      }
+    ]
+  },
+  {
+    "sd_file": "09_window_and_seatbelt.py",
+    "source_path": "/mnt/data/sd_agent_rag_training_dataset_full/sd_files/09_window_and_seatbelt.py",
+    "source_code": "\"\"\"\nThis sd file is used for setting multiple body signals together\"\nAuthor - vijay\nDomain - Body\ndate Modified - synthetic training dataset\n\"\"\"\n\nfrom behave import given, when, then\nfrom step_definitions_manager import TAMS, platform\n\n@platform(\"TAMS-206\")\n@TAMS([206])\n@when('the driver window and seat belt are set')\ndef step_impl(context):\n    try:\n        block_to_add = \"\"\n\n        parameters = {\n            \"String\": {\n                \"SignalGroup\": [\"\", \"driver_window_and_seatbelt\", \"in\"]\n            },\n            \"Float\": {\"PostDelay\": [\"\", \"0.4\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"driver_window_and_seatbelt\",\n        lib_reference = context.api_calalogue.get_key_value(\"set_multiple_signals\"),\n        arguments= parameters,\n    )\n\n    except Exception as err:\n        raise err\n\n    context.xml_block_to_add = block_to_add\n    context.signals_used.extend([\"window_driver_position\", \"seat_belt_driver\"])\n",
+    "parse_status": "fallback",
+    "syntax_error": {
+      "line": 24,
+      "column": 5,
+      "message": "expected 'except' or 'finally' block",
+      "text": "block_to_add += context.test_exec_gen.get_library_call("
+    },
+    "metadata": {
+      "module_docstring": "This sd file is used for setting multiple body signals together\"\nAuthor - vijay\nDomain - Body\ndate Modified - synthetic training dataset",
+      "author": "vijay",
+      "domain": "Body",
+      "date_modified": "synthetic training dataset",
+      "platform": "TAMS-206",
+      "tams_ids": [
+        206
+      ],
+      "function_name": "step_impl",
+      "function_parameters": []
+    },
+    "keyword": {
+      "patterns": [
+        {
+          "step_type": "when",
+          "pattern": "the driver window and seat belt are set"
+        }
+      ],
+      "parameters": []
+    },
+    "value_mappings": {},
+    "apis": [
+      {
+        "catalogue_key": "set_multiple_signals",
+        "block_type": "Non Frame",
+        "library_name": "driver_window_and_seatbelt",
+        "line": 24
+      }
+    ],
+    "signals": [],
+    "api_parameter_mapping": {
+      "set_multiple_signals": [
+        {
+          "String": {
+            "SignalGroup": [
+              "",
+              "driver_window_and_seatbelt",
+              "in"
+            ]
+          },
+          "Float": {
+            "PostDelay": [
+              "",
+              "0.4",
+              "in"
+            ]
+          }
+        }
+      ]
+    },
+    "execution_sequence": [
+      {
+        "type": "api_call",
+        "api_key": "set_multiple_signals",
+        "line": 24
+      }
+    ],
+    "context_outputs": [],
+    "observations": [],
+    "issues": [
+      {
+        "severity": "ERROR",
+        "code": "SYNTAX_ERROR",
+        "message": "Python syntax error: expected 'except' or 'finally' block",
+        "file": "09_window_and_seatbelt.py",
+        "line": 24,
+        "details": {
+          "syntax_error": {
+            "line": 24,
+            "column": 5,
+            "message": "expected 'except' or 'finally' block",
+            "text": "block_to_add += context.test_exec_gen.get_library_call("
+          }
+        }
+      }
+    ]
+  },
+  {
+    "sd_file": "10_ecu_reset_event.py",
+    "source_path": "/mnt/data/sd_agent_rag_training_dataset_full/sd_files/10_ecu_reset_event.py",
+    "source_code": "\"\"\"\nThis sd file is used for resetting the body ECU and recording the reset event\"\nAuthor - vijay\nDomain - Body\ndate Modified - synthetic training dataset\n\"\"\"\n\nfrom behave import given, when, then\nfrom step_definitions_manager import TAMS, platform\n\n@platform(\"TAMS-207\")\n@TAMS([207])\n@when('the body ECU is reset')\ndef step_impl(context):\n    try:\n        block_to_add = \"\"\n\n        parameters = {\n            \"String\": {\"EcuName\": [\"\", \"BCMA\", \"in\"]},\n            \"Float\": {\"PostDelay\": [\"\", \"2.5\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"BCMA_reset\",\n        lib_reference = context.api_calalogue.get_key_value(\"reset_ecu\"),\n        arguments= parameters,\n    )\n\n        parameters = {\n            \"String\": {\"EventName\": [\"\", \"BodyEcuResetComplete\", \"in\"]},\n            \"Float\": {\"Timeout\": [\"\", \"5.0\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"BodyEcuResetComplete\",\n        lib_reference = context.api_calalogue.get_key_value(\"trigger_event\"),\n        arguments= parameters,\n    )\n\n    except Exception as err:\n        raise err\n\n    context.xml_block_to_add = block_to_add\n",
+    "parse_status": "fallback",
+    "syntax_error": {
+      "line": 22,
+      "column": 5,
+      "message": "expected 'except' or 'finally' block",
+      "text": "block_to_add += context.test_exec_gen.get_library_call("
+    },
+    "metadata": {
+      "module_docstring": "This sd file is used for resetting the body ECU and recording the reset event\"\nAuthor - vijay\nDomain - Body\ndate Modified - synthetic training dataset",
+      "author": "vijay",
+      "domain": "Body",
+      "date_modified": "synthetic training dataset",
+      "platform": "TAMS-207",
+      "tams_ids": [
+        207
+      ],
+      "function_name": "step_impl",
+      "function_parameters": []
+    },
+    "keyword": {
+      "patterns": [
+        {
+          "step_type": "when",
+          "pattern": "the body ECU is reset"
+        }
+      ],
+      "parameters": []
+    },
+    "value_mappings": {},
+    "apis": [
+      {
+        "catalogue_key": "reset_ecu",
+        "block_type": "Non Frame",
+        "library_name": "BCMA_reset",
+        "line": 22
+      },
+      {
+        "catalogue_key": "trigger_event",
+        "block_type": "Non Frame",
+        "library_name": "BodyEcuResetComplete",
+        "line": 33
+      }
+    ],
+    "signals": [],
+    "api_parameter_mapping": {
+      "reset_ecu": [
+        {
+          "String": {
+            "EcuName": [
+              "",
+              "BCMA",
+              "in"
+            ]
+          },
+          "Float": {
+            "PostDelay": [
+              "",
+              "2.5",
+              "in"
+            ]
+          }
+        }
+      ],
+      "trigger_event": [
+        {
+          "String": {
+            "EventName": [
+              "",
+              "BodyEcuResetComplete",
+              "in"
+            ]
+          },
+          "Float": {
+            "Timeout": [
+              "",
+              "5.0",
+              "in"
+            ]
+          }
+        }
+      ]
+    },
+    "execution_sequence": [
+      {
+        "type": "api_call",
+        "api_key": "reset_ecu",
+        "line": 22
+      },
+      {
+        "type": "api_call",
+        "api_key": "trigger_event",
+        "line": 33
+      }
+    ],
+    "context_outputs": [],
+    "observations": [],
+    "issues": [
+      {
+        "severity": "ERROR",
+        "code": "SYNTAX_ERROR",
+        "message": "Python syntax error: expected 'except' or 'finally' block",
+        "file": "10_ecu_reset_event.py",
+        "line": 22,
+        "details": {
+          "syntax_error": {
+            "line": 22,
+            "column": 5,
+            "message": "expected 'except' or 'finally' block",
+            "text": "block_to_add += context.test_exec_gen.get_library_call("
+          }
+        }
+      }
+    ]
+  }
+]

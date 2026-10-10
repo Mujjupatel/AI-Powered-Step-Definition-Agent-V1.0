@@ -1,0 +1,2 @@
+# Stage 1 + Stage 2 intentionally use Python standard library only.
+# No embedding/vector DB dependency is required yet.

@@ -1,0 +1,83 @@
+[
+  {
+    "index_id": "7f320d4c88c76f6d",
+    "chunk_id": "b2cc3b5eafa5b21e",
+    "source_file": "03_powertrain.feature",
+    "chunk_type": "gherkin_scenario",
+    "text": "Feature: Powertrain state\nScenario: Set ignition\nWhen the ignition is set to \"ON\"",
+    "metadata": {
+      "feature": "Powertrain state",
+      "scenario": "Set ignition"
+    },
+    "score": 0.724871,
+    "semantic_score": 0.633161,
+    "lexical_score": 1.0
+  },
+  {
+    "index_id": "a4e1a5cb08410680",
+    "chunk_id": "b99b3f426a76d17a",
+    "source_file": "05_ignition_sequence.py",
+    "chunk_type": "keyword_pattern",
+    "text": "Keyword pattern: the ignition is set to \"{state}\"\nStep type: when\nParameters: state",
+    "metadata": {
+      "sd_file": "05_ignition_sequence.py",
+      "domain": "Power",
+      "platform": "TAMS-202",
+      "parse_status": "fallback",
+      "step_type": "when",
+      "keyword_pattern": "the ignition is set to \"{state}\""
+    },
+    "score": 0.442802,
+    "semantic_score": 0.323736,
+    "lexical_score": 0.8
+  },
+  {
+    "index_id": "12198127de3d32be",
+    "chunk_id": "17d3700414639ae0",
+    "source_file": "05_ignition_sequence.py",
+    "chunk_type": "source_code",
+    "text": "\"\"\"\nThis sd file is used for setting the ignition state and waiting for stabilization\"\nAuthor - vijay\nDomain - Power\ndate Modified - synthetic training dataset\n\"\"\"\n\nfrom behave import given, when, then\nfrom step_definitions_manager import TAMS, platform\n\n@platform(\"TAMS-202\")\n@TAMS([202])\n@when('the ignition is set to \"{state}\"')\ndef step_impl(context, state):\n    try:\n        block_to_add = \"\"\n        parameters = {\n            \"String\": {\n                \"Variable\": [\"\", context.signal.calalogue.get_key_value(\"ignition_state\"), \"in\",]\n            },\n            \"String\": {\"EnumValue\": [\"\", state, \"in\"]},\n            \"Float\": {\"PostDelay\": [\"\", \"1.0\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"ignition_\" + state,\n        lib_reference = context.api_calalogue.get_key_value(\"set_enum_signal\"),\n        arguments= parameters,\n    )\n\n        parameters = {\n            \"Float\": {\"Duration\": [\"\", \"2.0\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"ignition_stabilization_wait\",\n        lib_reference = context.api_calalogue.get_key_value(\"wait\"),\n        arguments= parameters,\n    )\n\n    except Exception as err:\n        raise err\n\n    context.xml_block_to_add = block_to_add\n    context.signals_used.append(\"ignition_state\")\n",
+    "metadata": {
+      "sd_file": "05_ignition_sequence.py",
+      "domain": "Power",
+      "platform": "TAMS-202",
+      "parse_status": "fallback",
+      "source_kind": "raw_python"
+    },
+    "score": 0.308855,
+    "semantic_score": 0.145141,
+    "lexical_score": 0.8
+  },
+  {
+    "index_id": "c31c45dccc7f49ec",
+    "chunk_id": "28b2ea9a0ece8603",
+    "source_file": "05_body_combined.feature",
+    "chunk_type": "gherkin_scenario",
+    "text": "Feature: Combined body operations\nScenario: Set driver window and seat belt\nWhen the driver window and seat belt are set",
+    "metadata": {
+      "feature": "Combined body operations",
+      "scenario": "Set driver window and seat belt"
+    },
+    "score": 0.164841,
+    "semantic_score": 0.086454,
+    "lexical_score": 0.4
+  },
+  {
+    "index_id": "f4bbde629d22fd33",
+    "chunk_id": "68ca96cc58467c9a",
+    "source_file": "09_window_and_seatbelt.py",
+    "chunk_type": "keyword_pattern",
+    "text": "Keyword pattern: the driver window and seat belt are set\nStep type: when\nParameters: none",
+    "metadata": {
+      "sd_file": "09_window_and_seatbelt.py",
+      "domain": "Body",
+      "platform": "TAMS-206",
+      "parse_status": "fallback",
+      "step_type": "when",
+      "keyword_pattern": "the driver window and seat belt are set"
+    },
+    "score": 0.158248,
+    "semantic_score": 0.077663,
+    "lexical_score": 0.4
+  }
+]

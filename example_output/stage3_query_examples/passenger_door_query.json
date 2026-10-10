@@ -1,0 +1,82 @@
+[
+  {
+    "index_id": "99f65fd4be3f191d",
+    "chunk_id": "fd602f8ef8124613",
+    "source_file": "01_body_doors.feature",
+    "chunk_type": "gherkin_scenario",
+    "text": "Feature: Body door control\nScenario: Open the driver door\nGiven the driver door is \"open\"",
+    "metadata": {
+      "feature": "Body door control",
+      "scenario": "Open the driver door"
+    },
+    "score": 0.453487,
+    "semantic_score": 0.437982,
+    "lexical_score": 0.5
+  },
+  {
+    "index_id": "847f9699bbc4ac03",
+    "chunk_id": "14a9cee56bc03408",
+    "source_file": "01_body_doors.feature",
+    "chunk_type": "gherkin_scenario",
+    "text": "Feature: Body door control\nScenario: Validate passenger door\nThen the passenger door should be \"closed\"",
+    "metadata": {
+      "feature": "Body door control",
+      "scenario": "Validate passenger door"
+    },
+    "score": 0.394198,
+    "semantic_score": 0.414486,
+    "lexical_score": 0.333333
+  },
+  {
+    "index_id": "97632ac6fa4c3719",
+    "chunk_id": "91955416a3ed007f",
+    "source_file": "02_passenger_door_check.py",
+    "chunk_type": "source_code",
+    "text": "\"\"\"\nThis sd file is used for checking the passenger door status\"\nAuthor - vijay\nDomain - Body\ndate Modified - synthetic training dataset\n\"\"\"\n\nfrom behave import given, when, then\nfrom step_definitions_manager import TAMS, platform\n\n@platform(\"TAMS-123\")\n@TAMS([124])\n@then('the passenger door should be \"{status}\"')\ndef step_impl(context, status):\n    try:\n        block_to_add = \"\"\n        expected = {\"open\": \"1\", \"close\": \"0\"}\n\n        parameters = {\n            \"String\": {\n                \"Variable\": [\"\", context.signal.calalogue.get_key_value(\"passenger_door_status\"), \"in\",]\n            },\n            \"Variant\": {\"ExpectedValue\": [\"\", expected[status], \"in\"]},\n            \"Float\": {\"Tolerance\": [\"\", \"0.0\", \"in\"],\n                      \"Timeout\": [\"\", \"2.0\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"passenger_door_status_check\",\n        lib_reference = context.api_calalogue.get_key_value(\"check_signal\"),\n        arguments= parameters,\n    )\n\n    except Exception as err:\n        raise err\n\n    context.xml_block_to_add = block_to_add\n    context.signals_used.append(\"passenger_door_status\")\n",
+    "metadata": {
+      "sd_file": "02_passenger_door_check.py",
+      "domain": "Body",
+      "platform": "TAMS-123",
+      "parse_status": "fallback",
+      "source_kind": "raw_python"
+    },
+    "score": 0.317086,
+    "semantic_score": 0.20056,
+    "lexical_score": 0.666667
+  },
+  {
+    "index_id": "0affe68f6e71fa30",
+    "chunk_id": "0282afe3fbf25206",
+    "source_file": "02_passenger_door_check.py",
+    "chunk_type": "keyword_pattern",
+    "text": "Keyword pattern: the passenger door should be \"{status}\"\nStep type: then\nParameters: status",
+    "metadata": {
+      "sd_file": "02_passenger_door_check.py",
+      "domain": "Body",
+      "platform": "TAMS-123",
+      "parse_status": "fallback",
+      "step_type": "then",
+      "keyword_pattern": "the passenger door should be \"{status}\""
+    },
+    "score": 0.268525,
+    "semantic_score": 0.246922,
+    "lexical_score": 0.333333
+  },
+  {
+    "index_id": "330198c2df97ec2c",
+    "chunk_id": "ee09094bc8bc4144",
+    "source_file": "01_driver_door_status.py",
+    "chunk_type": "source_code",
+    "text": "\"\"\"\nThis sd file is used for opening or closing the driver door\"\nAuthor - vijay\nDomain - Body\ndate Modified - synthetic training dataset\n\"\"\"\n\nfrom behave import given, when, then\nfrom step_definitions_manager import TAMS, platform\n\n@platform(\"TAMS-123\")\n@TAMS([123])\n@given('the driver door is \"{status}\"')\n@when('the driver door is \"{status}\"')\ndef step_impl(context, status):\n    \"\"\"\n    Inputs:\n        status: open/close\n    APIs:\n        text_api, set_signal\n    Signal:\n        door_status\n    \"\"\"\n    try:\n        block_to_add = \"\"\n\n        status_dict = {\"open\": \"1\", \"close\": \"0\"}\n\n        keyword = \"the driver door is \" + status\n\n        parameters = {\n            \"String\": {\"text\": [\"\", keyword, \"in\"]},\n            \"Integer\": {\"text_level\": [\"\", \"7\", \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Frame\",\n        name= keyword,\n        lib_reference = context.api_calalogue.get_key_value(\"text_api\"),\n        arguments= parameters,\n    )\n\n        parameters = {\n            \"String\": {\n                \"Variable\": [\"\", context.signal.calalogue.get_key_value(\"door_status\"), \"in\",]\n            },\n            \"Float\": {\"PostDelay\": [\"\", \"0.5\", \"in\"]},\n            \"Variant\": {\"value\": [\"\", status_dict[status], \"in\"]},\n        }\n    block_to_add += context.test_exec_gen.get_library_call(\n        block_type = \"Non Frame\",\n        name= \"door_status\" + status_dict[status],\n        lib_reference = context.api_calalogue.get_key_value(\"set_signal\"),\n        arguments= parameters,\n    )\n\n    except Exception as err:\n        raise err\n\n    context.xml_block_to_add = block_to_add\n    context.signals_used.append(\"door_status\")\n",
+    "metadata": {
+      "sd_file": "01_driver_door_status.py",
+      "domain": "Body",
+      "platform": "TAMS-123",
+      "parse_status": "fallback",
+      "source_kind": "raw_python"
+    },
+    "score": 0.251638,
+    "semantic_score": 0.168851,
+    "lexical_score": 0.5
+  }
+]
